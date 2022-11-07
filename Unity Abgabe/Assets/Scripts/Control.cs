@@ -5,16 +5,34 @@ using UnityEngine.SceneManagement;
 
 public class Control : MonoBehaviour
 {
+    public GameObject objectToActivateAndDeactivate;
+    public AudioSource bgMusic;
+
     // Wichtig für meinen Restartbutton, sonst ist das Game noch pausiert.
     void Start()
     {
-        Time.timeScale = 1;
+        Time.timeScale = 0;
+    }
+    
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.O))
+        {
+            objectToActivateAndDeactivate.SetActive(false);
+            Time.timeScale = 1;
+            bgMusic.Play();
+        }
+        if (Time.timeScale <= 0)
+        {
+            bgMusic.Stop();
+        }
     }
 
-    //Spielreset, untere Line nur für Überprüfung in Konsole
     public void ResetTheGame()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         print("The button is working");
     }
+
+    //Spielreset, untere Line nur für Überprüfung in Konsole
 }
