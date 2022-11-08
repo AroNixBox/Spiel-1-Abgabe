@@ -7,6 +7,7 @@ public class Control : MonoBehaviour
 {
     public GameObject objectToActivateAndDeactivate;
     public AudioSource bgMusic;
+    public static int Number = 0;
 
     // Wichtig für meinen Restartbutton, sonst ist das Game noch pausiert.
     void Start()
@@ -33,6 +34,5 @@ public class Control : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         print("The button is working");
     }
-
     //Spielreset, untere Line nur für Überprüfung in Konsole
 }
