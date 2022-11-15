@@ -6,6 +6,7 @@ public class HammerScript : MonoBehaviour
 {
     [SerializeField] private AudioSource coinSound;
     [SerializeField] Player player;
+    float speed;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {

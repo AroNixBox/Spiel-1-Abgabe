@@ -50,10 +50,6 @@ public class Player : MonoBehaviour
             Quaternion toRotation = Quaternion.LookRotation(Vector3.forward, movementDirection);
             transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, rotationSpeed * Time.deltaTime);
         }
-        if (score == 10)
-        {
-            speed = 12;
-        }
     }
     //Take Damage, lose health, Zeit Anhalten und GameOverScreen wenn tot
     public void TakeDamage()
@@ -77,6 +73,10 @@ public class Player : MonoBehaviour
     //Powerup Effect Geschwindigkeit verdoppeln
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (score == 18 || collision.tag == "PowerupScale")
+        {
+            speed = 12;
+        }
         if (speed == 5f)
         {
             if (collision.tag == "Powerup")
@@ -86,11 +86,11 @@ public class Player : MonoBehaviour
                 speed = 10f;
                 myRenderer.color = Color.blue;
                 StartCoroutine(ResetPower());
-                AddScore();
-                AddScore();
-                AddScore();
-                AddScore();
-                AddScore();
+                AddScore2();
+                AddScore2();
+                AddScore2();
+                AddScore2();
+                AddScore2();
             }
         }
         if (speed == 12f)
@@ -102,14 +102,14 @@ public class Player : MonoBehaviour
                 speed = 22f;
                 myRenderer.color = Color.green;
                 StartCoroutine(ResetPower2());
-                AddScore();
-                AddScore();
-                AddScore();
-                AddScore();
-                AddScore();
-                AddScore();
-                AddScore();
-                AddScore();
+                AddScore2();
+                AddScore2();
+                AddScore2();
+                AddScore2();
+                AddScore2();
+                AddScore2();
+                AddScore2();
+                AddScore2();
             }
         }
 
@@ -119,8 +119,16 @@ public class Player : MonoBehaviour
     private IEnumerator ResetPower()
     {
         yield return new WaitForSeconds(3);
-        speed = 5;
         myRenderer.color = Color.white;
+
+        if (speed == 12)
+        {
+            speed = 12;
+        }
+        if (speed == 10)
+        {
+            speed = 5;
+        }
     }
     private IEnumerator ResetPower2()
     {

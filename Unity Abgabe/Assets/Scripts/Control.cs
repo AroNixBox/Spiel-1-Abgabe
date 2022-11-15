@@ -31,8 +31,8 @@ public class Control : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.P))
         {
             objectToActivateAndDeactivate.SetActive(false);
-            Time.timeScale = 1;
             bgMusic.Play();
+            Time.timeScale = 1;
         }
     }
 
