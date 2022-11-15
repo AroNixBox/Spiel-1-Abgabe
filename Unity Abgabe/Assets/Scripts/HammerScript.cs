@@ -18,9 +18,17 @@ public class HammerScript : MonoBehaviour
             player.AddScore();
             player.AddScore();
             player.AddScore();
+            player.AddScore();
+            player.AddScore();
+            player.AddScore();
+            player.AddScore();
+            player.AddScore();
+            player.AddScore();
+
             GetComponent<SpriteRenderer>().color = Color.red;
             StartCoroutine(ResetPower());
         }
+
     }
     private IEnumerator ResetPower()
     {

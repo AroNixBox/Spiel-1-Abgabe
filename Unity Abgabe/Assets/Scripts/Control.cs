@@ -7,11 +7,12 @@ public class Control : MonoBehaviour
 {
     public GameObject objectToActivateAndDeactivate;
     public AudioSource bgMusic;
-    public static int Number = 0;
+    Player player;
 
     // Wichtig für meinen Restartbutton, sonst ist das Game noch pausiert.
     void Start()
     {
+        player = FindObjectOfType<Player>();
         Time.timeScale = 0;
     }
     
@@ -26,6 +27,12 @@ public class Control : MonoBehaviour
         if (Time.timeScale <= 0)
         {
             bgMusic.Stop();
+        }
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            objectToActivateAndDeactivate.SetActive(false);
+            Time.timeScale = 1;
+            bgMusic.Play();
         }
     }
 

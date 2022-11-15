@@ -27,6 +27,7 @@ public class Player : MonoBehaviour
     [SerializeField]
     private float rotationSpeed;
 
+
     void Start ()
     {
         myRenderer = GetComponent<SpriteRenderer>();
@@ -48,6 +49,10 @@ public class Player : MonoBehaviour
         {
             Quaternion toRotation = Quaternion.LookRotation(Vector3.forward, movementDirection);
             transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, rotationSpeed * Time.deltaTime);
+        }
+        if (score == 10)
+        {
+            speed = 12;
         }
     }
     //Take Damage, lose health, Zeit Anhalten und GameOverScreen wenn tot
@@ -72,14 +77,43 @@ public class Player : MonoBehaviour
     //Powerup Effect Geschwindigkeit verdoppeln
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == "Powerup")
+        if (speed == 5f)
         {
-            speedPowerupSoundEffect.Play();
-            Destroy(collision.gameObject);
-            speed = 10f;
-            myRenderer.color = Color.blue;
-            StartCoroutine(ResetPower());
+            if (collision.tag == "Powerup")
+            {
+                speedPowerupSoundEffect.Play();
+                Destroy(collision.gameObject);
+                speed = 10f;
+                myRenderer.color = Color.blue;
+                StartCoroutine(ResetPower());
+                AddScore();
+                AddScore();
+                AddScore();
+                AddScore();
+                AddScore();
+            }
         }
+        if (speed == 12f)
+        {
+            if (collision.tag == "Powerup")
+            {
+                speedPowerupSoundEffect.Play();
+                Destroy(collision.gameObject);
+                speed = 22f;
+                myRenderer.color = Color.green;
+                StartCoroutine(ResetPower2());
+                AddScore();
+                AddScore();
+                AddScore();
+                AddScore();
+                AddScore();
+                AddScore();
+                AddScore();
+                AddScore();
+            }
+        }
+
+
     }
     //Powerup Reset effects
     private IEnumerator ResetPower()
@@ -87,5 +121,16 @@ public class Player : MonoBehaviour
         yield return new WaitForSeconds(3);
         speed = 5;
         myRenderer.color = Color.white;
+    }
+    private IEnumerator ResetPower2()
+    {
+        yield return new WaitForSeconds(3);
+        speed = 12;
+        myRenderer.color = Color.white;
+    }
+    public void AddScore2()
+    {
+        score++;
+        scoreDisplay.text = "Score: " + score;
     }
 }
